@@ -52,10 +52,6 @@ app.get('/textBlackJack.js', function(req, res){
 	res.status(200).sendFile(path.join(__dirname, 'textBlackJack.js'));
 });
 
-app.get('/BlackJackRules.html', function(req, res){
-	res.status(200).sendFile(path.join(__dirname, 'BlackJack Rules.html'));
-});
-
 app.get('/index.js', function(req, res){
 	res.status(200).sendFile(path.join(__dirname, 'index.js'));
 });
