@@ -34,6 +34,11 @@ app.get('/', function(req, res, next){
 	res.status(200).render('home_page');
 });
 
+app.get('/update', function(req, res, next){
+	console.log("updated mongoDB");
+	res.redirect('/textBlackJack.html');
+});
+
 app.get('*', function(req, res){
 	res.status(404).render('home_page');
 });

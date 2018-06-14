@@ -102,6 +102,7 @@ function new_game() {					//when newGame button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 
 }
@@ -142,6 +143,7 @@ function deal_cards() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 
 	if (ifBust(playerTotal) == true) {				//checking if new card made player go bust
@@ -152,6 +154,7 @@ function deal_cards() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 	else if (playerTotal == 21) {
 		console.log("player wins.");
@@ -161,6 +164,7 @@ function deal_cards() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 }
 
@@ -175,6 +179,7 @@ function stand_cards() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 	else if (playerTotal == dealerTotal) {				//if player and dealer have same score, its a tie
 		console.log("draw.");
@@ -184,6 +189,7 @@ function stand_cards() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 	else {												//if dealer has a higher score than player, dealer wins
 		console.log("dealer wins.");
@@ -193,6 +199,7 @@ function stand_cards() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
+		window.location.href='/update';
 	}
 }
 
