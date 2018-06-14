@@ -20,11 +20,8 @@ if(imperialCredit){
 
 //home page button variables
 var game_button = document.getElementById('start');
-var rule_button = document.getElementById('rules');
 var head_home_button = document.getElementById('headhome');
 var head_game_button = document.getElementById('headstart');
-var head_rule_button = document.getElementById('headrules');
-
 
 
 //normal variables
@@ -262,10 +259,6 @@ function start_game(){
 	window.location.href='/textBlackJack.html';
 }
 
-function rule_page(){
-	window.location.href='/BlackJackRules.html';
-}
-
 function go_home(){
 	window.location.href='/';
 }
@@ -285,12 +278,6 @@ if(standCards){
 //home page event handlers
 if(head_home_button){
 	head_home_button.addEventListener('click', go_home);
-}
-if(head_rule_button){
-	head_rule_button.addEventListener('click', rule_page);
-}
-if(rule_button){
-	rule_button.addEventListener('click', rule_page);
 }
 if(game_button){
 	game_button.addEventListener('click', start_game);
