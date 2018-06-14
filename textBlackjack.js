@@ -20,8 +20,10 @@ if(imperialCredit){
 
 //home page button variables
 var game_button = document.getElementById('start');
+var rule_button = document.getElementById('rules');
 var head_home_button = document.getElementById('headhome');
 var head_game_button = document.getElementById('headstart');
+var head_rule_button = document.getElementById('headrules');
 
 
 //normal variables
@@ -121,8 +123,6 @@ function new_game() {					//when newGame button is pressed
 	console.log("");
 
 
-	alert("dealer's first card is: " + dealerCard1);			//showing the player the dealer's first card
-
 	dealerTotal = dealerTotal + dealerCard1 + dealerCard2;		//calculating totals for player and dealer after first two cards are drawn
 	playerTotal = playerCard1 + playerCard2;
 	console.log("dealer total = " + dealerTotal);
@@ -133,12 +133,14 @@ function new_game() {					//when newGame button is pressed
 		console.log("player wins.");
 		alert("player wins.");
 
-		imperialCredit.textContent = imperialCredit.textContent + bet_val;
+		imperialCredit.textContent = Number(imperialCredit.textContent) + Number(bet_val);
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";
+		//window.location.href='/update/' + imperialCredit.textContent;
 	}
 
 }
@@ -181,12 +183,13 @@ function deal_cards() {							//when hit button is pressed
 		console.log("player wins.");
 		alert("player wins.");
 		
-		imperialCredit.textContent = imperialCredit.textContent + bet_val;
+		imperialCredit.textContent = Number(imperialCredit.textContent) + Number(bet_val);
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";//window.location.href='/update/' + imperialCredit.textContent;
 	}
 
 	if (ifBust(playerTotal) == true) {				//checking if new card made player go bust
@@ -198,18 +201,20 @@ function deal_cards() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";//window.location.href='/update/' + imperialCredit.textContent;
 	}
 	else if (playerTotal == 21) {
 		console.log("player wins.");
 		alert("player wins.");
 
-		imperialCredit.textContent = imperialCredit.textContent + bet_val;
+		imperialCredit.textContent = Number(imperialCredit.textContent) + Number(bet_val);
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";//window.location.href='/update/' + imperialCredit.textContent;
 	}
 }
 
@@ -224,12 +229,13 @@ function stand_cards() {			//when stand button is pressed
 		console.log("player wins.");
 		alert("player wins.");
 
-		imperialCredit.textContent = imperialCredit.textContent + bet_val;
+		imperialCredit.textContent = Number(imperialCredit.textContent) + Number(bet_val);
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";//window.location.href='/update/' + imperialCredit.textContent;
 	}
 	else if (playerTotal == dealerTotal) {				//if player and dealer have same score, its a tie
 		console.log("draw.");
@@ -239,7 +245,8 @@ function stand_cards() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";//window.location.href='/update/' + imperialCredit.textContent;
 	}
 	else {												//if dealer has a higher score than player, dealer wins
 		console.log("dealer wins.");
@@ -250,13 +257,18 @@ function stand_cards() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		window.location.href='/update';
+		var all_cards = document.getElementsByClassName('cards');
+		all_cards.style.display = "none";//window.location.href='/update/' + imperialCredit.textContent;
 	}
 }
 
 //home page functions
 function start_game(){
 	window.location.href='/textBlackJack.html';
+}
+
+function rule_page(){
+	window.location.href='/BlackJackRules.html';
 }
 
 function go_home(){
@@ -278,6 +290,12 @@ if(standCards){
 //home page event handlers
 if(head_home_button){
 	head_home_button.addEventListener('click', go_home);
+}
+if(head_rule_button){
+	head_rule_button.addEventListener('click', rule_page);
+}
+if(rule_button){
+	rule_button.addEventListener('click', rule_page);
 }
 if(game_button){
 	game_button.addEventListener('click', start_game);
