@@ -8,9 +8,17 @@ var newGame = document.getElementById('newGame');
 var dealCards = document.getElementById('hit');
 var standCards = document.getElementById('stand');
 var doubleDownCards = document.getElementById('doubleDown');
-var splitCards = document.getElementById('split');
 var imperialCredit = document.getElementById('imperialCredit');
-var imperialCreditVal = imperialCredit.value;
+if(imperialCredit){
+	var imperialCreditVal = imperialCredit.value;
+}
+
+//home page button variables
+var game_button = document.getElementById('start');
+var rule_button = document.getElementById('rules');
+var head_home_button = document.getElementById('headhome');
+var head_game_button = document.getElementById('headstart');
+var head_rule_button = document.getElementById('headrules');
 
 //normal variables
 var dealerCard1;
@@ -24,19 +32,25 @@ var switchingVar;
 
 imperialCreditVal = 1000;			//NOT WORKING, WHERE I LEFT OFF
 
-newGame.style.display = "block";
-dealCards.style.display = "none";			//This block of code appears often
-standCards.style.display = "none";			//It is just blocking all buttons except newGame when not in a game
-doubleDownCards.style.display = "none";		//Or it showing all the buttons except newGame when in game
-splitCards.style.display = "none";
+if(newGame){
+	newGame.style.display = "block";
+}
+if(dealCards){
+	dealCards.style.display = "none";			//This block of code appears often
+}
+if(standCards){
+	standCards.style.display = "none";			//It is just blocking all buttons except newGame when not in a game
+}
+if(doubleDownCards){
+	doubleDownCards.style.display = "none";		//Or it showing all the buttons except newGame when in game
+}
 
-newGame.onclick = function() {					//when newGame button is pressed
+function new_game() {					//when newGame button is pressed
 
 	newGame.style.display = "none";
 	dealCards.style.display = "block";
 	standCards.style.display = "block";
 	doubleDownCards.style.display = "block";
-	splitCards.style.display = "block";
 
 	dealerTotal = 0;
 	playerTotal = 0;
@@ -88,7 +102,6 @@ newGame.onclick = function() {					//when newGame button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
 
 }
@@ -103,7 +116,7 @@ function ifBust(number) {			//returns true if player/dealer is bust, returns fal
 	}
 }
 
-dealCards.onclick = function() {							//when hit button is pressed
+function deal_cards() {							//when hit button is pressed
     newCardNum = Math.floor((Math.random() * 13) + 1);
     if (newCardNum > 10) {
 		newCardNum = 10;
@@ -129,7 +142,6 @@ dealCards.onclick = function() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
 
 	if (ifBust(playerTotal) == true) {				//checking if new card made player go bust
@@ -140,7 +152,6 @@ dealCards.onclick = function() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
 	else if (playerTotal == 21) {
 		console.log("player wins.");
@@ -150,11 +161,10 @@ dealCards.onclick = function() {							//when hit button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
 }
 
-standCards.onclick = function() {			//when stand button is pressed
+function stand_cards() {			//when stand button is pressed
     newCardNum = Math.floor((Math.random() * 13) + 1);
 
 	if (playerTotal > dealerTotal) {					//if player has a higher score, player wins
@@ -165,7 +175,6 @@ standCards.onclick = function() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
 	else if (playerTotal == dealerTotal) {				//if player and dealer have same score, its a tie
 		console.log("draw.");
@@ -175,7 +184,6 @@ standCards.onclick = function() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
 	else {												//if dealer has a higher score than player, dealer wins
 		console.log("dealer wins.");
@@ -185,6 +193,47 @@ standCards.onclick = function() {			//when stand button is pressed
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
 		doubleDownCards.style.display = "none";
-		splitCards.style.display = "none";
 	}
+}
+
+//home page functions
+function start_game(){
+	window.location.href='/textBlackJack.html';
+}
+
+function rule_page(){
+	window.location.href='/BlackJackRules.html';
+}
+
+function go_home(){
+	window.location.href='/';
+}
+
+//game page event handlers
+if(newGame){
+	newGame.addEventListener('click', new_game);
+}
+if(dealCards){
+	dealCards.addEventListener('click', deal_cards);
+}
+
+if(standCards){
+	standCards.addEventListener('click', stand_cards);
+}
+
+//home page event handlers
+if(head_home_button){
+	head_home_button.addEventListener('click', go_home);
+}
+if(head_rule_button){
+	head_rule_button.addEventListener('click', rule_page);
+}
+if(rule_button){
+	rule_button.addEventListener('click', rule_page);
+}
+if(game_button){
+	game_button.addEventListener('click', start_game);
+}
+if(head_game_button){
+	head_game_button.addEventListener('click', start_game);
 }
