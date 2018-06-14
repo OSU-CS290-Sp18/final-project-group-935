@@ -31,6 +31,10 @@ h3 {
 	padding: 5px;
 }
 
+#imperialCredit {
+	color: yellow;
+}
+
 #number {
 	width: 75px;
 	height: 120px;

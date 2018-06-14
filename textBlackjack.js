@@ -8,9 +8,14 @@ var newGame = document.getElementById('newGame');
 var dealCards = document.getElementById('hit');
 var standCards = document.getElementById('stand');
 var doubleDownCards = document.getElementById('doubleDown');
+var bet = document.getElementById('bet');
+if (bet){
+	var bet_val = bet.value;
+}
 var imperialCredit = document.getElementById('imperialCredit');
 if(imperialCredit){
-	var imperialCreditVal = imperialCredit.value;
+	var imperialCreditVal = imperialCredit.textContent;
+	imperialCreditVal = Number(imperialCreditVal);
 }
 
 //home page button variables
@@ -20,11 +25,6 @@ var head_home_button = document.getElementById('headhome');
 var head_game_button = document.getElementById('headstart');
 var head_rule_button = document.getElementById('headrules');
 
-//money variables
-var money = document.getElementById('imperialCredit');
-if(money){
-	console.log(money.textContent);
-}
 
 
 //normal variables
@@ -37,7 +37,7 @@ var playerTotal;
 var newCardNum;
 var switchingVar;
 
-imperialCreditVal = 1000;			//NOT WORKING, WHERE I LEFT OFF
+//imperialCreditVal = 1000;			//NOT WORKING, WHERE I LEFT OFF
 
 if(newGame){
 	newGame.style.display = "block";
@@ -62,7 +62,22 @@ function display_card(num, place){
 }
 
 function new_game() {					//when newGame button is pressed
-
+	if (bet){
+		var bet_val = bet.value;
+		
+	}
+	if(bet_val == ""){
+		alert("Enter a bet");
+		return;
+	}else if(isNaN(bet_val)){
+		alert("Bet must be a number");
+		return;
+	}else if(bet_val>imperialCreditVal){
+		alert("Bet can not be more than you have");
+		console.log(bet_val);
+		console.log(imperialCreditVal);
+		return;
+	}	
 	newGame.style.display = "none";
 	dealCards.style.display = "block";
 	standCards.style.display = "block";
@@ -121,6 +136,7 @@ function new_game() {					//when newGame button is pressed
 		console.log("player wins.");
 		alert("player wins.");
 
+		imperialCredit.textContent = imperialCredit.textContent + bet_val;
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
@@ -141,6 +157,10 @@ function ifBust(number) {			//returns true if player/dealer is bust, returns fal
 }
 
 function deal_cards() {							//when hit button is pressed
+    if (bet){
+		var bet_val = bet.value;
+		
+	}
     newCardNum = Math.floor((Math.random() * 13) + 1);
     if (newCardNum > 10) {
 		newCardNum = 10;
@@ -163,7 +183,8 @@ function deal_cards() {							//when hit button is pressed
 	if ( ( (playerCard1 == 1) || (playerCard2 == 1) ) && (playerTotal + 10 == 21) ) {			//if player has an ace, and playerTotal + 10 would equal 21, player wins
 		console.log("player wins.");
 		alert("player wins.");
-
+		
+		imperialCredit.textContent = imperialCredit.textContent + bet_val;
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
@@ -175,6 +196,7 @@ function deal_cards() {							//when hit button is pressed
 		console.log("player bust.");
 		alert("player bust.");
 
+		imperialCredit.textContent = imperialCredit.textContent - bet_val;
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
@@ -185,6 +207,7 @@ function deal_cards() {							//when hit button is pressed
 		console.log("player wins.");
 		alert("player wins.");
 
+		imperialCredit.textContent = imperialCredit.textContent + bet_val;
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
@@ -194,12 +217,17 @@ function deal_cards() {							//when hit button is pressed
 }
 
 function stand_cards() {			//when stand button is pressed
+    if (bet){
+		var bet_val = bet.value;
+		
+    }
     newCardNum = Math.floor((Math.random() * 13) + 1);
 
 	if (playerTotal > dealerTotal) {					//if player has a higher score, player wins
 		console.log("player wins.");
 		alert("player wins.");
 
+		imperialCredit.textContent = imperialCredit.textContent + bet_val;
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
@@ -220,6 +248,7 @@ function stand_cards() {			//when stand button is pressed
 		console.log("dealer wins.");
 		alert("dealer wins.");
 
+		imperialCredit.textContent = imperialCredit.textContent - bet_val;
 		newGame.style.display = "block";
 		dealCards.style.display = "none";
 		standCards.style.display = "none";
