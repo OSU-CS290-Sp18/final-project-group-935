@@ -1,5 +1,5 @@
 body {
-	background-color: black;
+background-color: black;
 }
 
 .headbutton {
@@ -16,4 +16,32 @@ h2 {
 
 h3 {
 	color: yellow;
+}
+
+#dealers_hand {
+	display: flex;
+}
+
+#players_hand {
+	display: flex;
+}
+
+.cards {
+	margin: 5px;
+	padding: 5px;
+}
+
+#number {
+	width: 75px;
+	height: 120px;
+	color: orange;
+	text-align: center;
+	line-height: 4;
+	font-size:30px;
+}
+
+article {
+width: 75px;
+height: 120px;
+background-image:url("img_background");
 }

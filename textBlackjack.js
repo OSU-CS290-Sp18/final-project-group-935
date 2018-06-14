@@ -20,6 +20,13 @@ var head_home_button = document.getElementById('headhome');
 var head_game_button = document.getElementById('headstart');
 var head_rule_button = document.getElementById('headrules');
 
+//money variables
+var money = document.getElementById('imperialCredit');
+if(money){
+	console.log(money.textContent);
+}
+
+
 //normal variables
 var dealerCard1;
 var dealerCard2;
@@ -45,6 +52,15 @@ if(doubleDownCards){
 	doubleDownCards.style.display = "none";		//Or it showing all the buttons except newGame when in game
 }
 
+function display_card(num, place){
+	var amount = {
+		number: num
+};
+	var card_html = Handlebars.templates.card(amount);
+	var hand = document.getElementById(place);
+	hand.insertAdjacentHTML('beforeEnd', card_html);
+}
+
 function new_game() {					//when newGame button is pressed
 
 	newGame.style.display = "none";
@@ -60,6 +76,7 @@ function new_game() {					//when newGame button is pressed
 	dealerCard1 = Math.floor((Math.random() * 13) + 1);
 	if (dealerCard1 > 10) {
 		dealerCard1 = 10;
+
 	}
 
 	dealerCard2 = Math.floor((Math.random() * 13) + 1);
@@ -71,6 +88,9 @@ function new_game() {					//when newGame button is pressed
 		dealerTotal = 10;
 	}
 
+	display_card('?', "dealers_hand");
+	display_card(dealerCard2, "dealers_hand");
+
 	playerCard1 = Math.floor((Math.random() * 13) + 1);
 	if (playerCard1 > 10) {
 		playerCard1 = 10;
@@ -81,6 +101,9 @@ function new_game() {					//when newGame button is pressed
 	if (playerCard2 > 10) {
 		playerCard2 = 10;
 	}
+
+	display_card(playerCard1, "players_hand");
+	display_card(playerCard2, "players_hand");
 
 	console.log("playerCard2 = " + playerCard2);
 	console.log("");
@@ -122,6 +145,8 @@ function deal_cards() {							//when hit button is pressed
     if (newCardNum > 10) {
 		newCardNum = 10;
 	}
+
+	display_card(newCardNum, "players_hand");
 
 	console.log("newCardNum = " + newCardNum);
 	playerTotal = playerTotal + newCardNum;

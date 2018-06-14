@@ -22,6 +22,10 @@ app.get('/textBlackJack.js', function(req, res){
 	res.status(200).sendFile(path.join(__dirname, 'textBlackJack.js'));
 });
 
+app.get('/cardTemplate.js', function(req, res){
+	res.status(200).sendFile(path.join(__dirname, 'cardTemplate.js'));
+});
+
 app.get('/BlackJackRules.html', function(req, res){
 	res.status(200).sendFile(path.join(__dirname, 'BlackJack Rules.html'));
 });
@@ -39,8 +43,12 @@ app.get('/update', function(req, res, next){
 	res.redirect('/textBlackJack.html');
 });
 
+app.get('/img_background', function(req, res, next){
+	res.status(200).sendFile(path.join(__dirname, 'img_background.png'));
+});
+
 app.get('*', function(req, res){
-	res.status(404).render('home_page');
+	res.status(404).sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, function(){
