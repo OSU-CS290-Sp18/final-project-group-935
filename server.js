@@ -43,10 +43,12 @@ app.set('view engine', 'handlebars');
 app.get('/textBlackJack.html', function(req, res){
 
 	var playerMoney1 = db.collection('playerMoney');
-	var playerMoney2 = playerMoney1.findOne({}/*, {_id: 0, amount: 1}*/);
-	var playerMoney3 = playerMoney2.amount;
-	console.log(playerMoney3);
-	var amount = playerMoney3;
+	var playerMoney2 = playerMoney1.find();
+	var playerMoney3 = playerMoney2.toArray();
+	var playerMoney4 = playerMoney3.then(function(value) {console.log(value)
+	
+	// console.log(playerMoney4);
+	var amount = value[0].amount;
 	
 	/*
 	playerCursor.toArray(function (err, playerDocs) {
@@ -69,6 +71,7 @@ app.get('/textBlackJack.html', function(req, res){
 	*/
 
 	res.status(200).render('game_page', {amount});
+});
 });
 
 
@@ -103,9 +106,9 @@ app.get('/', function(req, res, next){
 app.get('/update/:number', function(req, res, next){
 	
 	var newPlayerMoney = req.params.number;
-	//var playerMoneyCursor = collection.find();
-	db.playerMoney.updateOne(
-		{$set: {amount: newPlayerMoney}}
+	console.log(newPlayerMoney);
+	db.collection("playerMoney").update(
+		{amount: newPlayerMoney}
 	);
 
 	console.log("updated mongoDB");
